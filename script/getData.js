@@ -50,7 +50,32 @@ export const getData = {
       })
       callback(result);
     })
-  }
-};
+  },
+  catalog(callback) {
+    this.get((data) => {
+      const result = data.reduce((arr, item) => {
+        if (!arr.includes(item.category)) {
+          arr.push(item.category);
+        }
+        return arr;
+      }, [])
 
-// getData.get();
+      callback(result);
+    })
+  },
+  subCatalog(value, callback) {
+    this.get((data) => {
+      const result = data
+        .filter(item => item.category === value)
+        .reduce((arr, item) => {
+          if (!arr.includes(item.subcategory)) {
+            arr.push(item.subcategory);
+          }
+          return arr;
+        }, []);
+
+      callback(result);
+    })
+  },
+
+}
