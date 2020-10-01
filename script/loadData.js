@@ -33,7 +33,7 @@ export const loadData = () => {
       getData.wishList(wishList, (data) => console.dir({
         wishlist: data
       }));
-    } else {
+    } else if (prop === 'cat' || prop === 'subcat') {
       getData.category(prop, value, (data) => console.log(data));
     }
   }
